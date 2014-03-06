@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-rbenv_sample 'install rbenv' do
-  version '2.1.0-dev'
+rbenv_sample 'update rbenv' do
+  version '2.0.0-p0'
+  action :update
 end
-
