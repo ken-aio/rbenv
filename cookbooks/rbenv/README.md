@@ -15,7 +15,7 @@ e.g.
 
 Attributes
 ----------
-TODO: List you cookbook attributes here.
+TODO: List your cookbook attributes here.
 
 e.g.
 #### rbenv::default

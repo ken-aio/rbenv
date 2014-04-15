@@ -1,0 +1,6 @@
+{
+  "run_list": [
+    "recipe[rbenv::install]",
+    "recipe[rbenv::switch_version]"
+  ]
+}
