@@ -1,9 +1,9 @@
 # 依存パッケージのインストールはRedHat系とDebian系で分けます
 case node[:platform]
 when 'redhat', 'centos'
-  packages = %w( autoconf openssl-devel readline-devel zlib-devel curl-devel gcc-c++ procps git )
+  packages = %w( gcc-c++ glibc-headers openssl-devel readline libyaml-devel readline-devel zlib zlib-devel )
 when 'debian', 'ubuntu'
-  packages = %w(  )
+  packages = %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev )
 end
 
 packages.each do |pkg|
