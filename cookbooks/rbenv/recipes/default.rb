@@ -1,7 +1,7 @@
-# 依存パッケージのインストールはRedHat系とDebian系で分けます
+# 依存パッケージのインストールをRedHat系とDebian系で分岐
 case node[:platform]
 when 'redhat', 'centos'
-  packages = %w( gcc-c++ glibc-headers openssl-devel readline libyaml-devel readline-devel zlib zlib-devel )
+  packages = %w( gcc-c++ glibc-headers openssl-devel readline readline-devel zlib zlib-devel )
 when 'debian', 'ubuntu'
   packages = %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev )
 end
@@ -16,14 +16,14 @@ end
 # Resource定義でinstallをデフォルトactionにしたので、actionは指定する必要はない
 rbenv_settings 'install rbenv'
 
-# Ruby 2.1.1のインストール
+# Ruby 2.1.1をインストールして有効にする
 rbenv_settings 'install ruby' do
   version '2.1.1'
   action :switch_version
 end
 
-# Ruby 2.1.0をインストールする場合
+# 試しにRuby 2.1.0を追加でインストールして有効にしてみる
 rbenv_settings 'install ruby' do
-  version '2.1.0'
+  version '2.1.1'
   action :switch_version
 end

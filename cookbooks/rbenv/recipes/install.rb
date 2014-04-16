@@ -2,7 +2,7 @@
 install_dir = node[:rbenv][:install][:dir]
 
 # 1. 依存パッケージのインストール
-%w( autoconf openssl-devel readline-devel zlib-devel curl-devel gcc-c++ procps git ).each do |pkg|
+%w( gcc-c++ glibc-headers openssl-devel readline readline-devel zlib zlib-devel ).each do |pkg|
   package pkg do
     action :install
   end

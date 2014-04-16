@@ -1,6 +1,8 @@
+# install actionを実装します
 action :install do
   # Resource定義のattributeで指定したパラメータはnew_resource.(attribute名)で取得出来ます
   install_dir = "#{new_resource.install_dir}/rbenv"
+  env_file = '/etc/profile.d/rbenv.sh'
 
   # 1. 依存パッケージのインストール
   # 依存パッケージのインストールはRecipe内で定義します
@@ -20,7 +22,6 @@ action :install do
   end
 
   # 3. rbenv用の環境変数設定スクリプトを配置
-  env_file = '/etc/profile.d/rbenv.sh'
   bash 'set rbenv to environment' do
     user 'root'
     code <<-EOH
@@ -32,6 +33,7 @@ action :install do
   end
 end
 
+# switch_version actionを実装します
 action :switch_version do
   # Resource定義のattributeで指定したパラメータはnew_resource.(attribute名)で取得出来ます
   install_version = new_resource.version
