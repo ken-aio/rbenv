@@ -1,7 +1,7 @@
 # 依存パッケージのインストールはRedHat系とDebian系で分けます
 case node[:platform]
 when 'redhat', 'centos'
-  packages = %w( gcc-c++ glibc-headers openssl-devel readline libyaml-devel readline-devel zlib zlib-devel )
+  packages = %w( gcc-c++ glibc-headers openssl-devel readline readline-devel zlib zlib-devel )
 when 'debian', 'ubuntu'
   packages = %w( autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev )
 end
