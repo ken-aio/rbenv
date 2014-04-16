@@ -1,24 +1,35 @@
-# attributes定義より、rbenvをインストールするディレクトリ情報を取得する
+# attributes定義より、rbenvをインストールするディレクトリ情報を取得します
 install_dir = node[:rbenv][:install][:dir]
 
-# 1. 依存パッケージのインストール
+# 1. packageリソースを使って依存パッケージのインストールします
 %w( gcc-c++ glibc-headers openssl-devel readline readline-devel zlib zlib-devel ).each do |pkg|
   package pkg do
     action :install
   end
 end
 
-# 2-1. rbenv本体をインストール先ディレクトリに配置
-execute 'git clone rbenv' do
+# 2-1. gitリソースを使ってrbenv本体をインストール先ディレクトリに配置します
+git 'install rbenv' do
   user 'root'
-  command "git clone https://github.com/sstephenson/rbenv.git #{install_dir}"
+  destination install_dir
+  repository 'https://github.com/sstephenson/rbenv.git'
   not_if "ls #{install_dir}"
 end
 
-# 2-2. rbenvのプライグインをインストール
-execute 'git clone ruby-build' do
+# rbenvのプラグインインストール用のディレクトリを作成します
+directory "#{install_dir}/plugins" do
+  owner 'root'
+  group 'root'
+  mode 0644
+  action :create
+end
+
+# 2-2. gitリソースを使ってrbenvのプライグインをインストールします
+git 'install ruby-build' do
   user 'root'
-  command "git clone https://github.com/sstephenson/ruby-build.git #{install_dir}/plugins/ruby-build"
+  destination "#{install_dir}/plugins/ruby-build"
+  repository "https://github.com/sstephenson/ruby-build.git"
+  action :checkout
   not_if "ls #{install_dir}/plugins/ruby-build"
 end
 
