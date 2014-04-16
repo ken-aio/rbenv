@@ -24,6 +24,6 @@ end
 
 # 試しにRuby 2.1.0を追加でインストールして有効にしてみる
 rbenv_settings 'install ruby' do
-  version '2.1.1'
+  version '2.1.0'
   action :switch_version
 end
